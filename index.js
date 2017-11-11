@@ -7,6 +7,9 @@ module.exports = {
     return function(req, res, next) { // Exporting the middleware
       if (path.extname(String(req.url)) == '.mp4') { // Checking if file format is valid
         let filePath = path.join(basePath, req.url); // Saving file path
+        if(!fs.existsSync(filePath)) {
+          res.status('404').end('File not found');
+        }
         let stat = fs.statSync(filePath); // Getting file info
         let fileSize = stat.size; // Getting file size
         let range = req.headers.range; // Getting stream range

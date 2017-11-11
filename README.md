@@ -1,4 +1,4 @@
-# DaVideo 1.0.1
+# DaVideo 1.0.2
 A video streaming middleware for express.js
 
 **Note:** Currently, this can only stream files in .mp4 format.

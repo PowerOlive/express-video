@@ -1,6 +1,6 @@
 {
   "name": "davideo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A video streaming middleware for express.js",
   "main": "index.js",
   "repository": {
