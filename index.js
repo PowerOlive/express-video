@@ -9,6 +9,7 @@ module.exports = {
         let filePath = path.join(basePath, req.url); // Saving file path
         if(!fs.existsSync(filePath)) {
           res.status('404').end('File not found');
+          return;
         }
         let stat = fs.statSync(filePath); // Getting file info
         let fileSize = stat.size; // Getting file size
