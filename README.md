@@ -10,7 +10,7 @@ Code Sample:
 ```javascript
 const express = require('express');
 const path = require('path');
-const expressVideo = require('../index.js');
+const expressVideo = require('express-video');
 const app = express();
 
 app.use('/videos', expressVideo.stream(path.join(__dirname, '/' /* The folder with the files you'd like to stream when accessed */)));
