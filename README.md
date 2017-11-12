@@ -1,22 +1,21 @@
-# DaVideo 1.0.3
+# express-video 1.0.4
 A video streaming middleware for express.js
 
-**Note:** Currently, this can only stream files in .mp4 format.
+**Note:** Currently, this can only stream files in mp4 and webm format.
 
 ## Usage
-Installation: `npm install davideo --save`
+Installation: `npm install express-video --save`
 
 Code Sample:
 ```javascript
 const express = require('express');
 const path = require('path');
-const davideo = require('davideo');
+const expressVideo = require('../index.js');
 const app = express();
 
-app.use('/videos', davideo.stream(path.join(__dirname, 'videos'))); // Pass the folder with the videos you'd like to stream
+app.use('/videos', expressVideo.stream(path.join(__dirname, '/' /* The folder with the files you'd like to stream when accessed */)));
 
-app.listen(3000, function () {
-  console.log('Listening on port 3000!');
+app.listen(3000, () => {
+  console.log('Server is running on port 3000!');
 });
-
 ```

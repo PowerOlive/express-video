@@ -5,7 +5,8 @@ const path = require('path');
 module.exports = {
   stream: function(basePath) {
     return function(req, res, next) { // Exporting the middleware
-      if (path.extname(String(req.url)) == '.mp4') { // Checking if file format is valid
+      let ext = path.extname(String(req.url)).substr(1);
+      if (ext == 'mp4' || ext == 'webm') { // Checking if file format is valid
         let filePath = path.join(basePath, req.url); // Saving file path
         if(!fs.existsSync(filePath)) {
           res.status('404').end('File not found');
@@ -29,7 +30,7 @@ module.exports = {
             'Content-Range': `bytes ${start}-${end}/${fileSize}`,
             'Accept-Ranges': 'bytes',
             'Content-Length': chunkSize,
-            'Content-Type': 'video/mp4',
+            'Content-Type': `video/${ext}`,
           };
 
           res.writeHead(206, headers); // Writing the headers
@@ -37,7 +38,7 @@ module.exports = {
         } else { // If no range headers are sent, piping the whole video instead
           const head = {
             'Content-Length': fileSize,
-            'Content-Type': 'video/mp4',
+            'Content-Type': `video/${ext}`,
           }
           res.writeHead(200, head);
           fs.createReadStream(filePath).pipe(res);
